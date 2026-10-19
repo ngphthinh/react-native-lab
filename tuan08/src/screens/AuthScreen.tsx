@@ -3,13 +3,19 @@ import {
   View, Text, TextInput, TouchableOpacity, StyleSheet,
   ActivityIndicator, KeyboardAvoidingView, Platform,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { login, register, clearError } from '../redux/authSlice';
+import type { RootStackParamList } from '../navigation/types';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function validate(mode, { email, password, confirm }) {
-  const errors = {};
+type Mode = 'login' | 'register';
+interface Form { email: string; password: string; confirm: string }
+type Errors = Partial<Record<keyof Form, string>>;
+
+function validate(mode: Mode, { email, password, confirm }: Form): Errors {
+  const errors: Errors = {};
   if (!email.trim()) errors.email = 'Vui lòng nhập email';
   else if (!EMAIL_REGEX.test(email.trim())) errors.email = 'Email không hợp lệ';
 
@@ -23,34 +29,32 @@ function validate(mode, { email, password, confirm }) {
   return errors;
 }
 
-export default function AuthScreen({ navigation, route }) {
-  const redirectTo = route.params?.redirectTo; // vd: 'Checkout'
-  const dispatch = useDispatch();
-  const { loading, error: serverError } = useSelector((s) => s.auth);
+export default function AuthScreen({ navigation, route }: NativeStackScreenProps<RootStackParamList, 'Auth'>) {
+  const redirectTo = route.params?.redirectTo;
+  const redirectParams = route.params?.redirectParams;
+  const dispatch = useAppDispatch();
+  const { loading, error: serverError } = useAppSelector((s) => s.auth);
 
-  const [mode, setMode] = useState('login'); // 'login' | 'register'
-  const [form, setForm] = useState({ email: '', password: '', confirm: '' });
-  const [errors, setErrors] = useState({});
+  const [mode, setMode] = useState<Mode>('login');
+  const [form, setForm] = useState<Form>({ email: '', password: '', confirm: '' });
+  const [errors, setErrors] = useState<Errors>({});
 
-  const onChange = (key) => (value) => {
+  const onChange = (key: keyof Form) => (value: string) => {
     setForm((f) => ({ ...f, [key]: value }));
     if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
     if (serverError) dispatch(clearError());
   };
 
-  const switchMode = (next) => {
+  const switchMode = (next: Mode) => {
     setMode(next);
     setErrors({});
     dispatch(clearError());
   };
 
   const goAfterLogin = () => {
-    if (redirectTo) {
-      // replace: Auth bị thay bằng Checkout, nút Back quay về màn trước đó
-      navigation.replace(redirectTo);
-    } else {
-      navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
-    }
+    if (redirectTo === 'Checkout') navigation.replace('Checkout');
+    else if (redirectTo === 'BookDetail' && redirectParams) navigation.replace('BookDetail', redirectParams);
+    else navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
   };
 
   const onSubmit = async () => {
@@ -63,19 +67,17 @@ export default function AuthScreen({ navigation, route }) {
       await dispatch(action({ email: form.email.trim(), password: form.password })).unwrap();
       goAfterLogin();
     } catch {
-      // lỗi từ server đã nằm trong state.auth.error
+      // lỗi server nằm trong state.auth.error
     }
   };
 
   const isLogin = mode === 'login';
+  const tabs: [Mode, string][] = [['login', 'Đăng nhập'], ['register', 'Đăng ký']];
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
+    <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <View style={styles.tabs}>
-        {[['login', 'Đăng nhập'], ['register', 'Đăng ký']].map(([key, label]) => (
+        {tabs.map(([key, label]) => (
           <TouchableOpacity
             key={key}
             style={[styles.tab, mode === key && styles.tabActive]}
@@ -87,7 +89,7 @@ export default function AuthScreen({ navigation, route }) {
       </View>
 
       <TextInput
-        style={[styles.input, errors.email && styles.inputError]}
+        style={[styles.input, !!errors.email && styles.inputError]}
         placeholder="Email"
         autoCapitalize="none"
         keyboardType="email-address"
@@ -97,7 +99,7 @@ export default function AuthScreen({ navigation, route }) {
       {!!errors.email && <Text style={styles.error}>{errors.email}</Text>}
 
       <TextInput
-        style={[styles.input, errors.password && styles.inputError]}
+        style={[styles.input, !!errors.password && styles.inputError]}
         placeholder="Mật khẩu"
         secureTextEntry
         value={form.password}
@@ -108,7 +110,7 @@ export default function AuthScreen({ navigation, route }) {
       {!isLogin && (
         <>
           <TextInput
-            style={[styles.input, errors.confirm && styles.inputError]}
+            style={[styles.input, !!errors.confirm && styles.inputError]}
             placeholder="Nhập lại mật khẩu"
             secureTextEntry
             value={form.confirm}
@@ -125,9 +127,7 @@ export default function AuthScreen({ navigation, route }) {
         onPress={onSubmit}
         disabled={loading}
       >
-        {loading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
+        {loading ? <ActivityIndicator color="#fff" /> : (
           <Text style={styles.buttonText}>{isLogin ? 'Đăng nhập' : 'Đăng ký'}</Text>
         )}
       </TouchableOpacity>
