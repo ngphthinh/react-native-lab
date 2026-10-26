@@ -1,0 +1,132 @@
+{
+  "users": [
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$Zp.8ahL/aSuXGoF14KLC9ebipRaaVQ.mqlt/YRBFvKTyk5vdgWsZ.",
+      "id": 1
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "$2a$10$Zp.8ahL/aSuXGoF14KLC9ebipRaaVQ.mqlt/YRBFvKTyk5vdgWsZ.",
+      "id": 2
+    }
+  ],
+  "books": [
+    {
+      "title": "Dế Mèn Phiêu Lưu Ký",
+      "author": "Tô Hoài",
+      "category": "Văn học",
+      "price": 45000,
+      "image": "https://picsum.photos/seed/book1/300/450",
+      "description": "Dế Mèn Phiêu Lưu Ký của Tô Hoài, một cuốn sách văn học thiếu nhi nổi tiếng kể về hành trình phiêu lưu và trưởng thành của chú Dế Mèn.",
+      "id": 1
+    },
+    {
+      "title": "Cho Tôi Xin Một Vé Đi Tuổi Thơ",
+      "author": "Nguyễn Nhật Ánh",
+      "category": "Văn học",
+      "price": 85000,
+      "image": "https://picsum.photos/seed/book2/300/450",
+      "description": "Tác phẩm đưa người đọc trở về thế giới tuổi thơ hồn nhiên, với những trò nghịch ngợm và góc nhìn trong trẻo về cuộc sống.",
+      "id": 2
+    },
+    {
+      "title": "Mắt Biếc",
+      "author": "Nguyễn Nhật Ánh",
+      "category": "Tiểu thuyết",
+      "price": 110000,
+      "image": "https://picsum.photos/seed/book3/300/450",
+      "description": "Câu chuyện tình yêu đầy cảm xúc về Ngạn và Hà Lan, gợi lên những ký ức đẹp đẽ nhưng cũng nhiều tiếc nuối của tuổi trẻ.",
+      "id": 3
+    },
+    {
+      "title": "Nhà Giả Kim",
+      "author": "Paulo Coelho",
+      "category": "Tiểu thuyết",
+      "price": 79000,
+      "image": "https://picsum.photos/seed/book4/300/450",
+      "description": "Cuốn tiểu thuyết kể về hành trình theo đuổi ước mơ của chàng chăn cừu Santiago và những bài học về lòng can đảm, niềm tin.",
+      "id": 4
+    },
+    {
+      "title": "Đắc Nhân Tâm",
+      "author": "Dale Carnegie",
+      "category": "Kỹ năng sống",
+      "price": 86000,
+      "image": "https://picsum.photos/seed/book5/300/450",
+      "description": "Sách chia sẻ những nguyên tắc giao tiếp, xây dựng mối quan hệ và tạo thiện cảm trong cuộc sống cũng như công việc.",
+      "id": 5
+    },
+    {
+      "title": "Tuổi Trẻ Đáng Giá Bao Nhiêu",
+      "author": "Rosie Nguyễn",
+      "category": "Kỹ năng sống",
+      "price": 75000,
+      "image": "https://picsum.photos/seed/book6/300/450",
+      "description": "Cuốn sách khuyến khích người trẻ học hỏi, đọc sách, trải nghiệm và chủ động phát triển bản thân để sống ý nghĩa hơn.",
+      "id": 6
+    },
+    {
+      "title": "Harry Potter Và Hòn Đá Phù Thủy",
+      "author": "J. K. Rowling",
+      "category": "Fantasy",
+      "price": 150000,
+      "image": "https://picsum.photos/seed/book7/300/450",
+      "description": "Harry Potter khám phá thế giới phù thủy kỳ diệu, kết bạn và bắt đầu hành trình đối mặt với những bí mật của Hogwarts.",
+      "id": 7
+    },
+    {
+      "title": "Tôi Thấy Hoa Vàng Trên Cỏ Xanh",
+      "author": "Nguyễn Nhật Ánh",
+      "category": "Văn học",
+      "price": 95000,
+      "image": "https://picsum.photos/seed/book8/300/450",
+      "description": "Câu chuyện về tuổi thơ ở miền quê Việt Nam, tình anh em, tình bạn và những cảm xúc giản dị của một thời đã qua.",
+      "id": 8
+    },
+    {
+      "title": "Bố Già",
+      "author": "Mario Puzo",
+      "category": "Tiểu thuyết",
+      "price": 135000,
+      "image": "https://picsum.photos/seed/book9/300/450",
+      "description": "Tiểu thuyết nổi tiếng về gia đình Corleone, quyền lực, lòng trung thành và những lựa chọn phức tạp trong thế giới tội phạm.",
+      "id": 9
+    },
+    {
+      "title": "Atomic Habits - Thay Đổi Tí Hon, Hiệu Quả Bất Ngờ",
+      "author": "James Clear",
+      "category": "Phát triển bản thân",
+      "price": 129000,
+      "image": "https://picsum.photos/seed/book10/300/450",
+      "description": "Cuốn sách hướng dẫn xây dựng thói quen tốt, loại bỏ thói quen xấu và tạo ra những thay đổi tích cực từ các hành động nhỏ.",
+      "id": 10
+    },
+    {
+      "title": "Dế Mèn Phiêu Lưu Ký",
+      "author": "Tô Hoài",
+      "category": "Văn học",
+      "price": 45000,
+      "image": "https://picsum.photos/seed/book1/300/450",
+      "description": "Dế Mèn Phiêu Lưu Ký của Tô Hoài, một cuốn sách văn học thiếu nhi nổi tiếng kể về hành trình phiêu lưu và trưởng thành của chú Dế Mèn.",
+      "id": 11
+    }
+  ],
+  "reviews": [
+    {
+      "bookId": 1,
+      "userName": "Nguyễn Văn An",
+      "rating": 2,
+      "comment": "Hơi khó đọc với mình.",
+      "id": 1
+    },
+    {
+      "bookId": 1,
+      "userId": 1,
+      "userName": "Nguyễn Văn An",
+      "rating": 2,
+      "comment": "Hơi khó đọc với mình.",
+      "id": 2
+    }
+  ]
+}
